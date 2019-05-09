@@ -1,11 +1,8 @@
-#load("motion.rda")
-load("motion26.rda")
+#load("diff/model/motion3.rda")
+load("diff/model/motion3.rda")
 motion[,19] = as.factor(motion[,19])
 set.seed(999)
 library(randomForest)
-traini = sample(1:1917702,1534162)
-traind = motion[traini,]
-testd = motion[-traini,]
 
 ##5-folds cross-validation
 folds = 5
