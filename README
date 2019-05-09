@@ -1,0 +1,69 @@
+1. Title: Activity Recognition from a Single Chest-Mounted Accelerometer
+	Updated Nov, 2013 , P. Casale, email: plcasale@ieee.org
+	
+2. Abstract: The dataset collects data from a wearable accelerometer mounted on the chest. Uncalibrated Accelerometer Data are collected from 15 participants performing 7 activities. The dataset is intended for Activity Recognition research purposes. It provides challenges for identification and authentication of people using motion patterns.
+
+3. Relevant Information:
+   --- The dataset collects data from a wearable accelerometer mounted on the chest
+   --- Sampling frequency of the accelerometer: 52 Hz
+   --- Accelerometer Data are Uncalibrated
+   --- Number of Participants: 15
+   --- Number of Activities: 7
+   --- Data Format: CSV
+
+4. Dataset Information
+   --- Data are separated by participant
+   --- Each file contains the following information
+       ---- sequential number, x acceleration, y acceleration, z acceleration, label 
+   --- Labels are codified by numbers
+       --- 1: Working at Computer
+       --- 2: Standing Up, Walking and Going up\down stairs
+       --- 3: Standing
+       --- 4: Walking
+       --- 5: Going Up\Down Stairs
+       --- 6: Walking and Talking with Someone
+       --- 7: Talking while Standing
+       
+5. Discovery
+
+   ---Label = 0 means the end of all of motions.
+      --- maybe label = 0 is a undefined action
+   ---Can we split data by sexual? maybe by hierarchical
+   ---Can we say that data is collectd by every time the person open the device
+   ---the data is collected by a continuous time or by the device manually opened 
+   ---In out team work, we use xyz diff moving average and standard deviation by 52 points, 
+         we can get the accuracy = 0.98, it is incredible, but we only get a value then the model 
+         can tell that this value is like motion 1. We didn't use any series information ,but get            this high comeback. It is unreal. 
+
+6. Idea
+   ---using mean and standard deviation to split plot
+      ---plot is done, need more ideas
+   ---Can we say that data is collectd by every time the person open the device
+      ---still need to check
+   ---how to classification just two motion by the same person
+      ---
+   ---using shiny to plot 
+      ---It's fun
+   ---can I use sequential test to test a series motion data is which kind of motion
+      ---need to survey more
+   ---take 1000 points , micro vs macro
+      ---done, we can see by change range
+   ---test motion2 can separate to 3 part and from other momtion data 
+      ---
+   ---take every motion the first/last 2 seconds , if they are the same?
+      ---I take the first/last 2 seconds and do the anova test , result is each person are the same.
+      ---moreover do the pairwises test to check which two are most different
+      ---hope that we can get more information by doing pairwise t-test.
+   ---using decision tree to make predictions, maybe we can get the better accuracy by using random forest , but we can't explan th e resul well.
+      
+7. Pictures/shiny
+   ---person/motion/axis
+   ---person/motion/diff/axis
+      ---sampling ( using range to display )
+      ---moving average and standard deviation
+   ---person/motion/3d (can't publish online)
+   ---person/motion/diff/3d (can't publish online)
+   
+8. Shiny app
+   ---https://shutong.shinyapps.io/advanced/
+
