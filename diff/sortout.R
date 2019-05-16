@@ -2,7 +2,7 @@
 load("diff/rda/person.motion.diff.rda")
 ##library package
 library(zoo)
-point = 3
+point = 52
 for(i in 1:7){
   for(ax in 2:4){
     diff = data.frame(diff.mean = double(), diff.sd = double())
@@ -34,11 +34,10 @@ motion.diff = rbind(motion.diff[[1]], motion.diff[[2]], motion.diff[[3]], motion
 motion.diff = motion.diff[complete.cases(motion.diff),]
 colnames(motion.diff) = c("x diff mean", "x diff sd", "x diff median", "y diff mean", "y diff sd", "y diff median",
                           "z diff mean", "z diff sd", "z diff median", "label")
-save(motion.diff, file = "diff/model/motion.diff3.rda")
+save(motion.diff, file = "diff/model/motion.diff52.rda")
 
 #origin
 load("diff/rda/person.motion.all.rda")
-point = 3
 for(i in 1:7){
   for(ax in 2:4){
     origin = data.frame(origin.mean = double(), origin.sd = double())
@@ -70,13 +69,13 @@ motion.origin = rbind(motion.origin[[1]], motion.origin[[2]], motion.origin[[3]]
 motion.origin = motion.origin[complete.cases(motion.origin),]
 colnames(motion.origin) = c("x mean", "x sd", "x median", "y mean", "y sd", "y median",
                             "z mean", "z  sd", "z median", "label")
-save(motion.origin, file = "diff/model/motion.origin3.rda")
-load("diff/model/motion.diff3.rda")
-load("diff/model/motion.origin3.rda")
+save(motion.origin, file = "diff/model/motion.origin52.rda")
 
+load("diff/model/motion.diff52.rda")
+load("diff/model/motion.origin52.rda")
 motion = cbind(motion.origin, motion.diff)
 motion = motion[,c(1:9,11:20)]
-save(motion, file = "motion3.rda")
+save(motion, file = "diff/model/motion52.rda")
 for(i in 1:1917702){
   if(motion[i,10] != motion[i,20]){
     print("Warniing!")
