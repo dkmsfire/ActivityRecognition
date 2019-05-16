@@ -1,5 +1,5 @@
 #load("diff/model/motion3.rda")
-load("diff/model/motion3.rda")
+load("diff/model/motion52.rda")
 motion[,19] = as.factor(motion[,19])
 set.seed(999)
 library(randomForest)
@@ -17,7 +17,7 @@ for(i in 1:5){
     validation = motion[holdout[[1]],]
     train = motion[-c(holdout[[folds]], holdout[[1]]),]
   }
-  model = randomForest(train[,1:9], y = train[,19], ntree = 5)
+  model = randomForest(train[,10:18], y = train[,19], ntree = 5)
   pred_train = predict(model, train)
   pred_vali = predict(model, validation)
   pred_test = predict(model, test)
