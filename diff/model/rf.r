@@ -1,5 +1,7 @@
 #load("diff/model/motion3.rda")
 load("diff/model/motion52.rda")
+motion2 = motion[which(motion$label ==2),]
+motion = motion[-which(motion$label == 2),]
 motion[,19] = as.factor(motion[,19])
 set.seed(999)
 library(randomForest)
@@ -17,7 +19,7 @@ for(i in 1:5){
     validation = motion[holdout[[1]],]
     train = motion[-c(holdout[[folds]], holdout[[1]]),]
   }
-  model = randomForest(train[,10:18], y = train[,19], ntree = 5)
+  model = randomForest(train[,1:18], y = train[,19], ntree = 5)
   pred_train = predict(model, train)
   pred_vali = predict(model, validation)
   pred_test = predict(model, test)
@@ -29,6 +31,12 @@ for(i in 1:5){
   print(mean(pred_test == test[,19]))
 }
 
+## motion2 by motion1,3,4,5,6,7
+pred = data.frame(pred_motion2, order = 1:length(pred_motion2))
+pred$pred_motion2 = as.numeric(as.character(pred$pred_motion2))
+plot(pred$pred_motion2 ~ pred$order)
+
+pred_motion2 = predict(model, motion2)
 ##model1 using all attribute
 model1 = randomForest(traind[,1:18], y = traind[,19], ntree = 15)
 pred1 = predict(model1, newdata = testd)
