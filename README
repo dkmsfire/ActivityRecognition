@@ -66,4 +66,9 @@
    
 8. Shiny app
    ---https://shutong.shinyapps.io/advanced/
+   
+9. Result
+   ---Accuracy 0.98 by random forest
+   	--- It's incredible to get the score for this data, because I thought this dataset is very difficult to understand at first.
+	--- only take moving average, moving standard deviation, moving median to get this accuracy.
 
